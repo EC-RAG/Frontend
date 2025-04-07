@@ -37,7 +37,7 @@
         ></a-menu>
       </a-layout-sider>
       
-      <a-layout-content :style="{backgroundColor:token.colorBgLayout}">
+      <a-layout-content :style="{backgroundColor:token.colorBgLayout, overflowY: 'auto'}">
         <router-view />
       </a-layout-content>
     </a-layout>

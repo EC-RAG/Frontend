@@ -34,7 +34,7 @@
         <template #bodyCell="{ column, text, record }">
           <template v-if="column.dataIndex === 'edit'">
             <a-button type="link" @click="showEditbox(record)" size="small">编辑</a-button>
-            <a-modal v-model:open="openEditbox" title="编辑" @ok="handleOk" width="800px" cancelText="取消" okText="提交">
+            <a-modal v-model:open="openEditbox" title="编辑" @ok="handleOk" width="800px" cancelText="取消" okText="提交" :okButtonProps="{loading: submitLoading}">
               <a-form :model="formState" :label-col="labelCol" :wrapper-col="wrapperCol">
                 <a-form-item label="表名">
                   <a-input v-model:value="formState.table_name" />
@@ -95,6 +95,7 @@ const columns = [
 
 const flushTable = () => {
   loading.value = true;
+  searchValue.value = '';
   data.value = [];
   axiosInstance.get('/api/data/all').then((response) => {
     data.value = response.data;
@@ -173,8 +174,10 @@ const onDelete = (record) => {
 };
 
 const handleOk = () => {
+  submitLoading.value = true;
   if (formState.table_name === '') {
     message.error('表名不能为空');
+    submitLoading.value = false;
     return;
   }
   axiosInstance.post('/api/data/edittable', formState).then((response) => {
@@ -185,6 +188,7 @@ const handleOk = () => {
     } else {
       message.error('编辑失败，请检查表名是否重复');
     }
+    s
   });
 };
 
@@ -202,6 +206,8 @@ const onSearch = () => {
     loading.value = false;
   });
 };
+
+const submitLoading = ref(false);
 
 </script>
 
