@@ -3,21 +3,34 @@
     <div id="plotly-chart" ref="chartRef" :style="{ width: '100%', height: '500px' }"></div>
 
     <a-card class="chat-box">
-      <a-textarea
-        v-model:value="value2"
-        placeholder="请输入任何问题"
-        :auto-size="{ minRows: 2}"
-        :bordered="false"
-        size="large"
-      />
+      <a-layout-content style="overflow-y: auto; max-height: 200px; min-height: 80px;">
+        <a-textarea
+          v-model:value="value2"
+          placeholder="请输入任何问题"
+          :auto-size="{ minRows: 2}"
+          :bordered="false"
+          size="large"
+          style="height: 100%;"
+        />
+      </a-layout-content>
+
+      <a-layout-content style="text-align: right;">
+        <a-tooltip title="搜索">
+          <a-button shape="circle" :icon="h(ArrowUpOutlined)" />
+        </a-tooltip>
+      </a-layout-content>
     </a-card>
   </a-layout-content>
   
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, h } from 'vue';
 import Plotly from 'plotly.js-dist';
+
+import { ArrowUpOutlined } from '@ant-design/icons-vue';
+
+import responseArea from '../components/responseArea.vue';
 
 const chartRef = ref(null);
 
@@ -72,8 +85,9 @@ onMounted(() => {
   border-radius: 20px;
   max-height: 256px;
   min-height: 120px;
-  overflow-y: auto;
   padding: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .chat-box > :first-child {
