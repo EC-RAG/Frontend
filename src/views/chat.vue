@@ -1,6 +1,11 @@
 <template>
   <a-layout-content class="main-content">
-    <response-area/>
+    <component
+      v-for="(item, index) in queries"
+      :key="index"
+      :is="item.comp"
+      v-bind="item.props"
+    />
     <div style="margin: 100px;"></div>
 
     <a-card class="chat-box">
@@ -17,7 +22,7 @@
 
       <a-layout-content style="text-align: right;">
         <a-tooltip title="搜索">
-          <a-button shape="circle" :icon="h(ArrowUpOutlined)" :disabled="searchText == ''"/>
+          <a-button shape="circle" :icon="h(ArrowUpOutlined)" :disabled="searchText == ''" @click="search"/>
         </a-tooltip>
       </a-layout-content>
     </a-card>
@@ -32,10 +37,23 @@ import { ArrowUpOutlined } from '@ant-design/icons-vue';
 
 import responseArea from '../components/responseArea.vue';
 
+const queries = ref([]);
 
 // ws = new WebSocket('ws://127.0.0.1:8000/api/graph/ragstream');
 
 const searchText = ref('');
+
+const search = () => {
+  if (searchText.value !== '') {
+    queries.value.push({
+      comp: responseArea,
+      props: {
+        query: searchText.value,
+      },
+    });
+    searchText.value = '';
+  }
+};
 
 </script>
 

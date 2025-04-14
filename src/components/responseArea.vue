@@ -53,7 +53,7 @@ const type = (text, target, timeout=50, callback) => {
 
 
 onMounted(()=>{
-  ws = new WebSocket("ws://127.0.0.1:8000/api/graph/ragstream");
+  ws = new WebSocket("ws://172.16.5.15:8000/api/graph/ragstream");
 
   ws.onopen = function() {
     console.log("WebSocket is open now.");
