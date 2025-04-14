@@ -10,8 +10,10 @@
   },
   "dependencies": {
     "@ant-design/icons-vue": "^7.0.1",
+    "@highlightjs/vue-plugin": "^2.1.0",
     "ant-design-vue": "4.x",
     "axios": "^1.8.4",
+    "highlight.js": "^11.11.1",
     "plotly.js-dist": "^3.0.1",
     "vue": "^3.5.13",
     "vue-plotly": "^1.1.0",

@@ -1,11 +1,12 @@
 <template>
   <a-layout-content class="main-content">
-    <div id="plotly-chart" ref="chartRef" :style="{ width: '100%', height: '500px' }"></div>
+    <response-area/>
+    <div style="margin: 100px;"></div>
 
     <a-card class="chat-box">
       <a-layout-content style="overflow-y: auto; max-height: 200px; min-height: 80px;">
         <a-textarea
-          v-model:value="value2"
+          v-model:value="searchText"
           placeholder="请输入任何问题"
           :auto-size="{ minRows: 2}"
           :bordered="false"
@@ -16,7 +17,7 @@
 
       <a-layout-content style="text-align: right;">
         <a-tooltip title="搜索">
-          <a-button shape="circle" :icon="h(ArrowUpOutlined)" />
+          <a-button shape="circle" :icon="h(ArrowUpOutlined)" :disabled="searchText == ''"/>
         </a-tooltip>
       </a-layout-content>
     </a-card>
@@ -26,52 +27,16 @@
 
 <script setup>
 import { onMounted, ref, h } from 'vue';
-import Plotly from 'plotly.js-dist';
 
 import { ArrowUpOutlined } from '@ant-design/icons-vue';
 
 import responseArea from '../components/responseArea.vue';
 
-const chartRef = ref(null);
 
-onMounted(() => {
-  const trace = {
-    x: [1, 2, 3, 4],
-    y: [10, 11, 12, 13],
-    z: [1, 2, 3, 4],
-    mode: 'markers',
-    marker: {
-      size: 12,
-      color: [1, 2, 3, 4],
-      colorscale: 'Viridis',
-      opacity: 0.8
-    }
-  };
+// ws = new WebSocket('ws://127.0.0.1:8000/api/graph/ragstream');
 
-  const layout = {
-    margin: {
-      l: 0,
-      r: 0,
-      b: 0,
-      t: 0
-    },
-    scene: {
-      xaxis: {
-        title: 'X',
-      },
-      yaxis: {
-        title: 'Y',
-      },
-      zaxis: {
-        title: 'Z',
-      }
-    }
-  };
+const searchText = ref('');
 
-  const data = [trace];
-
-  Plotly.newPlot(chartRef.value, data, layout);
-});
 </script>
 
 <style>
@@ -93,5 +58,8 @@ onMounted(() => {
 .chat-box > :first-child {
   padding: 16px;
 }
-
+.main-content{
+  min-height: 100%;
+  overflow: auto;
+}
 </style>
