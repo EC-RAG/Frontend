@@ -9,5 +9,6 @@ export default defineConfig({
     port: 24444,
     open: true,
     
-  }
+  },
+  base: '/'
 })
