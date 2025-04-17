@@ -1,0 +1,47 @@
+name: Create Release
+
+on:
+  push:
+    tags:
+      - 'v*'  # 监听以 v 开头的 tag，例如 v1.0.0
+
+jobs:
+  release:
+    runs-on: ubuntu-latest  # 在 Ubuntu 系统上运行
+
+    steps:
+      # 检出代码
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # 设置 Node.js 环境
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'  # 设置 Node.js 版本
+          
+      # 安装 pnpm
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      # 安装依赖
+      - name: Install dependencies
+        run: pnpm install
+
+      # 构建 Vue 项目
+      - name: Build Vue project
+        run: pnpm run build
+
+      # 创建 tar.gz 压缩包
+      - name: Create tar.gz archive of dist
+        run: |
+          cd dist
+          tar -czf ../frontend.tar.gz .  # 将 dist 目录中的文件压缩为 dist.tar.gz
+
+      # 上传构建产物和压缩包到 Release
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: 'dist/**,frontend.tar.gz'  # 同时上传 dist/ 目录和 dist.tar.gz 压缩包
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
