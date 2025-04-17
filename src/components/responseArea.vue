@@ -51,6 +51,7 @@ const type = (text, target, timeout=50, callback) => {
   }
 }
 
+import {message} from 'ant-design-vue';
 
 onMounted(()=>{
   ws = new WebSocket("/api/graph/ragstream");
@@ -78,6 +79,15 @@ onMounted(()=>{
       loading.value = false;
     }
   }
+
+  ws.onerror = function(event) {
+    console.error("WebSocket error observed:", event);
+    message.error('WebSocket连接失败，请检查网络连接或服务器状态。');
+    // 刷新页面
+    setTimeout(() => {
+      window.location.reload();
+    }, 2000);
+  };
 })
 
 </script>

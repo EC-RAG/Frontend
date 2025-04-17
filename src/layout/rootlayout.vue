@@ -90,41 +90,41 @@ const items = reactive([
     title: '对话',
     onClick: () => router.push('/chat')
   },
-  {
-    key: 'sub2',
-    icon: () => h(AppstoreOutlined),
-    label: 'Navigation Two',
-    title: 'Navigation Two',
-    children: [
-      {
-        key: '9',
-        label: 'Option 9',
-        title: 'Option 9',
-      },
-      {
-        key: '10',
-        label: 'Option 10',
-        title: 'Option 10',
-      },
-      {
-        key: 'sub3',
-        label: 'Submenu',
-        title: 'Submenu',
-        children: [
-          {
-            key: '11',
-            label: 'Option 11',
-            title: 'Option 11',
-          },
-          {
-            key: '12',
-            label: 'Option 12',
-            title: 'Option 12',
-          },
-        ],
-      },
-    ],
-  },
+  // {
+  //   key: 'sub2',
+  //   icon: () => h(AppstoreOutlined),
+  //   label: 'Navigation Two',
+  //   title: 'Navigation Two',
+  //   children: [
+  //     {
+  //       key: '9',
+  //       label: 'Option 9',
+  //       title: 'Option 9',
+  //     },
+  //     {
+  //       key: '10',
+  //       label: 'Option 10',
+  //       title: 'Option 10',
+  //     },
+  //     {
+  //       key: 'sub3',
+  //       label: 'Submenu',
+  //       title: 'Submenu',
+  //       children: [
+  //         {
+  //           key: '11',
+  //           label: 'Option 11',
+  //           title: 'Option 11',
+  //         },
+  //         {
+  //           key: '12',
+  //           label: 'Option 12',
+  //           title: 'Option 12',
+  //         },
+  //       ],
+  //     },
+  //   ],
+  // },
 ]);
 watch(
   () => state.openKeys,
