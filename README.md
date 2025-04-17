@@ -1,3 +1,3 @@
-# ERAG
+# ECRAG
 
 webui of ERAG
