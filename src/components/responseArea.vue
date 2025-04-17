@@ -54,7 +54,7 @@ const type = (text, target, timeout=50, callback) => {
 import {message} from 'ant-design-vue';
 
 onMounted(()=>{
-  ws = new WebSocket("/api/graph/ragstream");
+  ws = new WebSocket(import.meta.env.VITE_API_BASE_URL + "/api/graph/ragstream");
 
   ws.onopen = function() {
     console.log("WebSocket is open now.");

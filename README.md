@@ -1,3 +1,3 @@
 # ECRAG
 
-webui of ERAG
+webui of ECRAG
