@@ -113,7 +113,7 @@ const columns = [
     dataIndex: 'step_type',
     key: 'step_type',
     // ellipsis: true,
-    width: 168,
+    width: 120,
     align: 'center',
   },
   {
@@ -121,7 +121,7 @@ const columns = [
     dataIndex: 'level',
     key: 'level',
     // ellipsis: true,
-    width: 168,
+    width: 120,
     align: 'center',
   },
   {

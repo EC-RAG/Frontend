@@ -27,6 +27,11 @@ const router = createRouter({
           path: "/rule",
           name: "rule",
           component: () => import("../views/rule.vue"),
+        },
+        {
+          path: "/document",
+          name: "document",
+          component: () => import("../views/documents.vue"),
         }
       ]
     },
