@@ -81,6 +81,12 @@ const items = reactive([
         title: '别名管理',
         onClick: () => router.push('/alias')
       },
+      {
+        key: '/rule',
+        label: '规则管理',
+        title: '规则管理',
+        onClick: () => router.push('/rule')
+      }
     ],
   },
   {

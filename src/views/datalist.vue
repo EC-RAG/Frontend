@@ -97,7 +97,7 @@ const flushTable = () => {
   loading.value = true;
   searchValue.value = '';
   data.value = [];
-  axiosInstance.get('/api/data/all').then((response) => {
+  axiosInstance.get('/api/data/alltableinfo').then((response) => {
     data.value = response.data;
     loading.value = false;
   });
@@ -151,7 +151,7 @@ const handleCreateOk = () => {
     return;
   }
 
-  axiosInstance.post('/api/data/addtable', formState).then((response) => {;
+  axiosInstance.post('/api/data/addtableinfo', formState).then((response) => {;
     if (response.data === true) {
       message.success('添加成功');
       flushTable();
